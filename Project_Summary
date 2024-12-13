@@ -1,0 +1,35 @@
+investor-user-platform/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/
+│       │       └── platform/
+│       │           ├── dao/
+│       │           │   ├── UserDAO.java
+│       │           │   └── InvestorDAO.java
+│       │           ├── model/
+│       │           │   ├── User.java
+│       │           │   └── Investor.java
+│       │           ├── service/
+│       │           │   ├── UserService.java
+│       │           │   └── InvestorService.java
+│       │           ├── controller/
+│       │           │   ├── UserController.java
+│       │           │   └── InvestorController.java
+│       │           └── util/
+│       │               └── DBConnection.java
+│       ├── resources/
+│       │   └── db.properties
+│       └── webapp/
+│           ├── index.jsp
+│           ├── login.jsp
+│           ├── register.jsp
+│           ├── profile.jsp
+│           ├── investorProfile.jsp
+│           ├── connectionHistory.jsp
+│           ├── logout.jsp
+│           └── WEB-INF/
+│               └── web.xml
+├── pom.xml
+├── README.md
+└── LICENSE
