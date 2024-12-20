@@ -1,0 +1,10 @@
+user-management/
+│
+├── index.html          # Login Page
+├── register.html       # Registration Page
+├── profile.html        # User Profile Page
+├── css/
+│   └── styles.css      # Custom CSS
+├── js/
+│   └── scripts.js      # JavaScript for validation and interactivity
+└── README.md           # Project documentation
