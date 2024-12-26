@@ -14,10 +14,18 @@ import java.io.IOException;
 public class UserServlet extends HttpServlet {
     private UserDAO userDAO = new UserDAO();
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Forward to the registration page
-        request.getRequestDispatcher("register.jsp").forward(request, response);
+   @Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String username = request.getParameter("username");
+    User user = userDAO.getUser ByUsername(username); // Fetch user data
+
+    if (user != null) {
+        request.setAttribute("user", user); // Set user data in request scope
+        request.getRequestDispatcher("profile.jsp").forward(request, response); // Forward to profile page
+    } else {
+        response.sendRedirect("register.jsp"); // Redirect to registration if user not found
+    }
+}
     }
 
     @Override
