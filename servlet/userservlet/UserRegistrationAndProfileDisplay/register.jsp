@@ -5,6 +5,9 @@
 </head>
 <body>
     <h1>Register</h1>
+<c:if test="${not empty errorMessage}">
+        <p style="color:red;">${errorMessage}</p>
+    </c:if>
     <form action="user" method="post">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
