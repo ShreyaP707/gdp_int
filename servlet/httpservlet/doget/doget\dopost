@@ -1,0 +1,17 @@
+@Override
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // Forward to a JSP page
+    request.getRequestDispatcher("index.jsp").forward(request, response);
+}
+
+@Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String username = request.getParameter("username");
+    String password = request.getParameter("password");
+    
+    // Here you would typically validate the input and interact with the database
+    // For example, save the user to the database or authenticate the user
+
+    // Redirect to a profile page after processing
+    response.sendRedirect("profile.jsp");
+}
