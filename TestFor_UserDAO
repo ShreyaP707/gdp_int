@@ -1,0 +1,57 @@
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class UserDAOTest {
+    private UserDAO userDAO;
+    private Connection mockConnection;
+    private PreparedStatement mockStatement;
+    private ResultSet mockResultSet;
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        userDAO = new UserDAO();
+        mockConnection = Mockito.mock(Connection.class);
+        mockStatement = Mockito.mock(PreparedStatement.class);
+        mockResultSet = Mockito.mock(ResultSet.class);
+        
+        // Mock the DBConnection to return the mock connection
+        Mockito.when(DBConnection.getConnection()).thenReturn(mockConnection);
+    }
+
+    @Test
+    public void testSaveUser () throws Exception {
+        User user = new User("testuser", "hashedpassword");
+        user.setEmail("test@example.com");
+
+        Mockito.when(mockConnection.prepareStatement(Mockito.anyString())).thenReturn(mockStatement);
+        
+        userDAO.saveUser (user);
+        
+        Mockito.verify(mockStatement).setString(1, user.getUsername());
+        Mockito.verify(mockStatement).setString(2, user.getPassword());
+        Mockito.verify(mockStatement).setString(3, user.getEmail());
+        Mockito.verify(mockStatement).executeUpdate();
+    }
+
+    @Test
+    public void testGetUser ByUsername() throws Exception {
+        String username = "testuser";
+        Mockito.when(mockConnection.prepareStatement(Mockito.anyString())).thenReturn(mockStatement);
+        Mockito.when(mockStatement.executeQuery()).thenReturn(mockResultSet);
+        Mockito.when(mockResultSet.next()).thenReturn(true);
+        Mockito.when(mockResultSet.getString("username")).thenReturn(username);
+        Mockito.when(mockResultSet.getString("password")).thenReturn("hashedpassword");
+        Mockito.when(mockResultSet.getString("email")).thenReturn("test@example.com");
+
+        User user = userDAO.getUser ByUsername(username);
+        
+        assertNotNull(user);
+        assertEquals(username, user.getUsername());
+    }
+}
