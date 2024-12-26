@@ -34,6 +34,20 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
         String password = request.getParameter("password");
         String email = request.getParameter("email"); // Assuming you have an email field in your form
 
+         // Server-side validation
+    if (username == null || username.isEmpty() || password == null || password.isEmpty() || email == null || email.isEmpty()) {
+        request.setAttribute("errorMessage", "All fields are required.");
+        request.getRequestDispatcher("register.jsp").forward(request, response);
+        return;
+    }
+
+    // Additional validation (e.g., check for existing username)
+    if (userDAO.getUser ByUsername(username) != null) {
+        request.setAttribute("errorMessage", "Username already exists.");
+        request.getRequestDispatcher("register.jsp").forward(request, response);
+        return;
+    }
+
         // Create a new User object
         User user = new User(username, password);
         user.setEmail(email); // Set email if applicable
