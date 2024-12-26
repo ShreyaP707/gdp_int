@@ -58,4 +58,5 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
         // Redirect to the profile page after registration
         response.sendRedirect("profile.jsp?username=" + username);
     }
+request.setAttribute("successMessage", "Registration successful! Please log in.");
 }
