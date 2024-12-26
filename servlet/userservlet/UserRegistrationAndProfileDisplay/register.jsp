@@ -11,5 +11,25 @@
         <input type="email" name="email" placeholder="Email" required>
         <button type="submit">Register</button>
     </form>
+<script>
+    function validateForm() {
+        var username = document.forms["registerForm"]["username"].value;
+        var password = document.forms["registerForm"]["password"].value;
+        var email = document.forms["registerForm"]["email"].value;
+
+        if (username == "" || password == "" || email == "") {
+            alert("All fields must be filled out");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<form name="registerForm" action="user" method="post" onsubmit="return validateForm()">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <button type="submit">Register</button>
+</form>
 </body>
 </html>
