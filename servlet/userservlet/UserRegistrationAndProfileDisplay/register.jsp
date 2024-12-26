@@ -8,6 +8,7 @@
 <c:if test="${not empty errorMessage}">
         <p style="color:red;">${errorMessage}</p>
     </c:if>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <form action="user" method="post">
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
